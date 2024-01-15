@@ -15,9 +15,11 @@ print("""---\n
 WELCOME TO DICE-ROLL-O-MATIC
 (c) Applied Dice Applications Labs 1971
 """)
-sleep(0.5)
 
-print("""---
+bleep_bloop()
+bleep_bloop()
+
+print("""\n---
 To end your session, type 'end'
 To roll 4 d23s type '4d23'
 To roll 1 d40 type '1d40' or '40'
