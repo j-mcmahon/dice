@@ -3,6 +3,7 @@ from random import randint
 from time import sleep
 
 def bleep_bloop(pause = 0.2):
+	# print either Bleep or Bloop
 	sound = ["Bleep","Bloop"][randint(1,2) - 1]
 	print(sound)
 	sleep(pause)
@@ -23,27 +24,19 @@ print("""\n---
 To end your session, type 'end'
 To roll 4 d23s type '4d23'
 To roll 1 d40 type '1d40' or '40'
-Shortcuts: 1d20 = 't' 1d100 = 'h' 1d6 = 's' 1d8 = 'e'
+Shortcuts: 1d20 = 't' 1d100 = 'h' 1d8 = 'e' 1d6 = 's' 1d4 = 'f'
 ---\n""")
 
 
+shortcuts = {"h": "1d100", "t": "1d20", "e": "1d8", "s": "1d6", "f": "1d4"}
 x = ""
 while x != "end":
 	x = input("What do you want roll? ").lower()
 	if bool(re.search("^[0-9]*$", x)):
-		x = '1d' + str(x)
+		x = "1d" + str(x)
 		print(f"Rolling {x}")
-	elif x == 't':
-		x = '1d20'
-		print(f"Rolling {x}")
-	elif x == 'h':
-		x = '1d100'
-		print(f"Rolling {x}")
-	elif x == 's':
-		x = '1d6'
-		print(f"Rolling {x}")
-	elif x == 'e':
-		x = '1d8'
+	elif x in shortcuts.keys():
+		x = shortcuts[x]
 		print(f"Rolling {x}")
 	if bool(re.search("^[0-9]*d[0-9]*$", x)):
 		split_x = x.split("d")
@@ -64,7 +57,7 @@ while x != "end":
 				print(f"Rolled a {result}")
 		print("---")
 		if n != 1:
-			print(f"Final result: {' + '.join(results_strings)} = {sum(results_ints)}")
+			print(f"Final result: { ' + '.join(results_strings) } = { sum(results_ints) }")
 			print(f"Highest roll was: {max(results_ints)} | Lowest roll was: {min(results_ints)}")
 	elif x == "end":
 		print("Goodbye. Thank you for choosing DICE-ROLL-O-MATIC!")
