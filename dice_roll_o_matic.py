@@ -6,7 +6,7 @@ from time import sleep
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("-v", "--Output", help = "bla")
+parser.add_argument("-g", "--Game", help = "What game is this for?")
  
 # Read arguments from command line
 args = parser.parse_args()
